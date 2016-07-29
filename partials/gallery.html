@@ -1,17 +1,25 @@
 <div class="row">
-  <div class="col-sm-2">
+  <div class="col-sm-3">
     <div class="sidebar-nav">
-      <div class="navbar">
-        <ul class="nav navbar-nav">
-         <li><a ui-sref="gallery.grand_opening">Grand Opening</a></li>
-         <li><a ui-sref="gallery.women_self_defense">Women's Self-Defense</a></li>
-         <li><a ui-sref="gallery.in_the_news">In the News</a></li>
-        </ul>
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#galleryNavBar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="galleryNavBar">
+          <ul class="nav navbar-nav">
+            <li ui-sref-active="active"><a ui-sref="gallery.grand_opening">Grand Opening</a></li>
+            <li ui-sref-active="active"><a ui-sref="gallery.women_self_defense">Women's Self-Defense</a></li>
+            <li ui-sref-active="active"><a ui-sref="gallery.in_the_news">In the News</a></li> 
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-  <div class="col-sm-10">
-    <div ui-view>
-    </div>
+  <div class="col-sm-9">
+    <div ui-view> </div>
   </div>
-</div> <!-- row -->
+</div>

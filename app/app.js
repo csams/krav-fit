@@ -2,9 +2,29 @@ var app = angular.module("kravFit", ["ui.router"])
   .config(function($stateProvider, $urlRouterProvider){
       var partial_base = "/partials/";
 
+      $urlRouterProvider.when("/gallery", "gallery/grand_opening");
       $urlRouterProvider.otherwise("/home");
 
       $stateProvider.
+        state("gallery", {
+          abstract: true,
+          url: "/gallery",
+          templateUrl: partial_base + "gallery.html"
+        }).
+        state("gallery.grand_opening", {
+          url: "/grand_opening",
+          controller: "grandOpeningController",
+          templateUrl: partial_base + "gallery.carousel.html"
+        }).
+        state("gallery.women_self_defense", {
+          url: "/women_self_defense",
+          controller: "womenSelfDefenseController",
+          templateUrl: partial_base + "gallery.carousel.html"
+        }).
+        state("gallery.in_the_news", {
+          url: "/in_the_news",
+          templateUrl: partial_base + "gallery.in_the_news.html"
+        }).
         state("home", {
           url: "/home",
           templateUrl: partial_base + "home.html"
@@ -13,21 +33,6 @@ var app = angular.module("kravFit", ["ui.router"])
           url: "/adults",
           templateUrl: partial_base + "adults.html" 
         }).
-        state("gallery", {
-          url: "/gallery",
-          templateUrl: partial_base + "gallery.html"
-        }).
-        state("gallery.grand_opening", {
-          controller: "grandOpeningController",
-          templateUrl: partial_base + "gallery.carousel.html"
-        }).
-        state("gallery.women_self_defense", {
-          controller: "womenSelfDefenseController",
-          templateUrl: partial_base + "gallery.carousel.html"
-        }).
-        state("gallery.in_the_news", {
-          templateUrl: partial_base + "gallery.in_the_news.html"
-        }).
         state("kids", {
           url: "/kids",
           templateUrl: partial_base + "kids.html"
@@ -35,6 +40,10 @@ var app = angular.module("kravFit", ["ui.router"])
         state("law", {
           url: "/law",
           templateUrl: partial_base + "law.html"
+        }).
+        state("schedule", {
+          url: "/schedule",
+          templateUrl: partial_base + "schedule.html"
         }).
         state("faq", {
           url: "/faq",
@@ -58,6 +67,7 @@ var app = angular.module("kravFit", ["ui.router"])
 app.controller("mainController", function($scope) {
   $scope.email = "info@kravfit.co";
   $scope.phone_number = "501.664.KRAV (5728)";
+  $scope.day = new Date().getDay();
 
   var partial_base = "/partials/";
   var faq_base = partial_base + "faq/";
@@ -97,6 +107,29 @@ app.directive("carousel", function($timeout) {
       }
    }
 });
+
+app.directive('navAutoClose', function () {
+    return function (scope, elm, attrs) {
+      var collapsible = $(elm).find(".navbar-collapse");
+      var visible = false;
+
+      collapsible.on("show.bs.collapse", function () {
+        visible = true;
+      });
+
+      collapsible.on("hide.bs.collapse", function () {
+        visible = false;
+      });
+
+      $(elm).find("a").each(function (index, element) {
+        $(element).click(function (e) {
+          if (visible) {
+            collapsible.collapse("hide");
+          }
+        });
+      });
+    }
+  });
 
 app.controller("grandOpeningController", function($scope) {
    $scope.links = [
