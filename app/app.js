@@ -1,51 +1,66 @@
 var app = angular.module("kravFit", ["ui.router"])
   .config(function($stateProvider, $urlRouterProvider){
-      var fragment_base = "/fragments/";
+      var partial_base = "/partials/";
 
       $urlRouterProvider.otherwise("/home");
 
       $stateProvider.
         state("home", {
           url: "/home",
-          templateUrl: fragment_base + "home.html",
+          templateUrl: partial_base + "home.html"
         }).
         state("adults", {
           url: "/adults",
-          templateUrl: fragment_base + "adults.html", 
+          templateUrl: partial_base + "adults.html" 
+        }).
+        state("gallery", {
+          url: "/gallery",
+          templateUrl: partial_base + "gallery.html"
+        }).
+        state("gallery.grand_opening", {
+          controller: "grandOpeningController",
+          templateUrl: partial_base + "gallery.carousel.html"
+        }).
+        state("gallery.women_self_defense", {
+          controller: "womenSelfDefenseController",
+          templateUrl: partial_base + "gallery.carousel.html"
+        }).
+        state("gallery.in_the_news", {
+          templateUrl: partial_base + "gallery.in_the_news.html"
         }).
         state("kids", {
           url: "/kids",
-          templateUrl: fragment_base + "kids.html", 
+          templateUrl: partial_base + "kids.html"
         }).
         state("law", {
           url: "/law",
-          templateUrl: fragment_base + "law.html", 
+          templateUrl: partial_base + "law.html"
         }).
         state("faq", {
           url: "/faq",
-          templateUrl: fragment_base + "faq.html", 
+          templateUrl: partial_base + "faq.html"
         }).
         state("gear", {
           url: "/gear",
-          templateUrl: fragment_base + "gear.html", 
+          templateUrl: partial_base + "gear.html"
         }).
         state("about", {
           url: "/about",
-          templateUrl: fragment_base + "about.html", 
+          templateUrl: partial_base + "about.html"
         }).
         state("login", {
           url: "/login",
-          templateUrl: fragment_base + "login.html", 
+          templateUrl: partial_base + "login.html"
         });
     }
   );
 
-app.controller('mainController', function($scope) {
+app.controller("mainController", function($scope) {
   $scope.email = "info@kravfit.co";
   $scope.phone_number = "501.664.KRAV (5728)";
 
-  var fragment_base = "/fragments/";
-  var faq_base = fragment_base + "faq/";
+  var partial_base = "/partials/";
+  var faq_base = partial_base + "faq/";
 
   function Faq(faq_id, desc) {
     this.id = faq_id;
@@ -64,5 +79,78 @@ app.controller('mainController', function($scope) {
     new Faq("difference", "How does Krava Maga training differ from other martial arts?"),
     new Faq("typical", "What is a typical class like?"),
     new Faq("personal_safety", "Is Krav Maga just for people who are worried about personal safety?")
+  ];
+});
+
+app.directive("carousel", function($timeout) {
+   return {
+      restrict: "E",
+      scope: {
+        links: "=" 
+      },
+      templateUrl: "/partials/carousel.html",
+      link: function(scope, element) {
+        $timeout(function() {
+          $(".carousel-indicators li",element).first().addClass("active");
+          $(".carousel-inner .item",element).first().addClass("active");
+        });
+      }
+   }
+});
+
+app.controller("grandOpeningController", function($scope) {
+   $scope.links = [
+    { src:"/images/galleries/grand_opening/ArmBar.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/BoxJumpForward.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/CrunchAndPuch.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/CrunchAndPunch2.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/GunFromSide.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/GunFront2.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/GunFront.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/GunMount2.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/GunMount3.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/KickOffFromGuard.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/KickOffWithGun.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/KidGetUpFromGround.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/KidGroundRoundKick.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/MountedGun.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/PunchFront2.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/PunchFront.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/PunchOnGroundWithGun.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/Stacking2.jpg", alt:"", caption:""},
+    { src:"/images/galleries/grand_opening/Stacking.jpg", alt:"", caption:""}
+  ];
+});
+
+app.controller("womenSelfDefenseController", function($scope) {
+   $scope.links = [
+    { src:"/images/galleries/women_self_defense/BearHugFromBehind2.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/BearHugFromBehind.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/Elbow2.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/Elbow3.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/Elbow.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/ElbowToFace.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/ElbowToPad.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/FrontKick2.gif", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/FrontKick3.gif", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/FrontKick4.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/FrontKick.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/FrontKickToGroin2.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/FrontKickToGroin.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/GroupTalk.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/HeadLockFromBehind.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/Knee2.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/Knee3.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/Knee4.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/Knee.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/KneeWithSuit.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/Movement2.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/Movement.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/PalmStrike2.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/PalmStrike.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/PalmStrikes3.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/PalmStrikes.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/Pull.jpg", alt:"", caption:""},
+    { src:"/images/galleries/women_self_defense/Punching.jpg", alt:"", caption:""}
   ];
 });
