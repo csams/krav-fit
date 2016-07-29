@@ -1,0 +1,19 @@
+<div class="banner">
+    <img src="images/FAQ_Subhdr_Image.jpg">
+</div>
+<div class="panel-group" id="accordion">
+  <div ng-repeat="f in faqs" class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#{{f.id}}">
+          {{ f.description }}
+        </a>
+      </h4>
+    </div>
+    <div id="{{f.id}}" class="panel-collapse collapse">
+      <div class="panel-body">
+        <ng-include src="f.url"></ng-include>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Krav Fit | Little Rock, Arkansas</title>
+
+    <link rel="Shortcut Icon" type="image/x-icon" href="images/icon.png" />
+    <link rel="stylesheet" href="styles/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+    <script>
+      var app = angular.module('kravFit', []);
+      app.controller('mainController', function($scope) {
+          var fragment_base = "/fragments/";
+          var faq_base = fragment_base + "faq/";
+          $scope.phone_number = "501.664.KRAV (5728)";
+          $scope.email = "info@kravfit.us";
+
+          function Faq(faq_id, desc) {
+            this.id = faq_id;
+            this.description = desc;
+            this.url = faq_base + faq_id + ".html";
+          }
+
+          $scope.faqs = [
+            new Faq("what_is","What is Krav Maga?"),
+            new Faq("what_should_i_wear", "What should I wear?"),
+            new Faq("law", "Is Krav appropriate for members of miliary or law enforcement?"),
+            new Faq("cost", "How much does it cost?"),
+            new Faq("coed", "Are the classes coed?"),
+            new Faq("results", "How long will me to notice results from Krav Maga training?"),
+            new Faq("weight", "Will I lose weight training Krav Maga?"),
+            new Faq("difference", "How does Krava Maga training differ from other martial arts?"),
+            new Faq("typical", "What is a typical class like?"),
+            new Faq("personal_safety", "Is Krav Maga just for people who are worried about personal safety?")
+          ];
+      });
+    </script>
+  </head>
+  <body>
+    <div name="app" ng-app="kravFit" ng-controller="mainController">
+      <div class="bricks">
+        <img src="images/Krav_Logo_01.png">
+      </div>
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span> 
+            </button>
+            <a class="navbar-brand" href="#">Krav Fit</a>
+          </div>
+         <div class="collapse navbar-collapse" id="myNavBar">
+            <ul class="nav navbar-nav">
+              <li><a href="#" ng-click="fragment='fragments/home.html'">Home</a></li>
+              <li><a href="#" ng-click="fragment='fragments/adults.html'">Adults</a></li>
+              <li><a href="#" ng-click="fragment='fragments/kids.html'">Kids</a></li> 
+              <li><a href="#" ng-click="fragment='fragments/law.html'">Law Enforcement/Military</a></li> 
+              <li><a href="#" ng-click="fragment='fragments/faq.html'">FAQ</a></li> 
+              <li><a href="#" ng-click="fragment='fragments/gear.html'">Gear</a></li> 
+              <li><a href="#" ng-click="fragment='fragments/about.html'">About Us</a></li> 
+              <li><a href="#" ng-click="fragment='fragments/login.html'">Instructor Login</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container content">
+        <div ng-include="fragment"></div>
+      </div>
+      <footer class="footer">
+        <div class="container">
+          <p style="text-align: center;"><span class="text-muted">&copy; Krav Fit 2016</span></p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
