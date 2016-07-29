@@ -1,13 +1,14 @@
-/* Sticky footer styles
--------------------------------------------------- */
 html {
   position: relative;
   min-height: 100%;
+  overflow-y: scroll;
 }
+
 body {
   // Margin bottom by footer height
   margin-bottom: 60px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -17,26 +18,31 @@ body {
 }
 
 .content {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .email {
-    color: White;
+  color: White;
 }
 
 .banner img {
-    width: 100%;
-    margin-bottom: 20px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .bricks {
-    width: 100%;
-    background-image: url("../images/Krav_BGBrick_1800pxl.jpg");
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+  width: 100%;
+  background-image: url("../images/Krav_BGBrick_1800pxl.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .bricks img {
-    width: 100%
+  width: 100%
+}
+
+.faq_link {
+  cursor: pointer;
+  text-decoration: none !important;
 }

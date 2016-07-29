@@ -6,3 +6,4 @@ cp index.html $WEB_ROOT
 cp -r images $WEB_ROOT
 cp -r styles $WEB_ROOT
 cp -r fragments $WEB_ROOT
+cp -r app $WEB_ROOT
