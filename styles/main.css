@@ -47,6 +47,10 @@ body {
   text-decoration: none !important;
 }
 
+.schedule {
+    overflow: auto;
+}
+
 .calendar_col {
     background-color: #272b2e;
 }

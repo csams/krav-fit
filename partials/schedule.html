@@ -1,14 +1,15 @@
-<div class="row">
+<div class="row schedule">
   <div class="col-sm-12">
     <table class="table">
+      <caption>Class Schedule</caption>
       <colgroup>
-        <col>
-        <col ng-class="{'calendar_col': (day == 1)}">
-        <col ng-class="{'calendar_col': (day == 2)}">
-        <col ng-class="{'calendar_col': (day == 3)}">
-        <col ng-class="{'calendar_col': (day == 4)}">
-        <col ng-class="{'calendar_col': (day == 5)}">
-        <col ng-class="{'calendar_col': (day == 6)}">
+        <col class="calendar_col">
+        <col ng-class="{'calendar_col': (day != 1)}">
+        <col ng-class="{'calendar_col': (day != 2)}">
+        <col ng-class="{'calendar_col': (day != 3)}">
+        <col ng-class="{'calendar_col': (day != 4)}">
+        <col ng-class="{'calendar_col': (day != 5)}">
+        <col ng-class="{'calendar_col': (day != 6)}">
       </colgroup>
       <thead>
         <tr>
