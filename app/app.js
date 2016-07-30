@@ -9,6 +9,9 @@ var app = angular.module("kravFit", ["ui.router"])
         state("gallery", {
           abstract: true,
           url: "/gallery",
+          controller: function($scope){
+            $scope.galleryName = "Grand Opening";
+          },
           templateUrl: partial_base + "gallery.html"
         }).
         state("gallery.grand_opening", {
@@ -23,6 +26,7 @@ var app = angular.module("kravFit", ["ui.router"])
         }).
         state("gallery.in_the_news", {
           url: "/in_the_news",
+          controller: "inTheNewsController",
           templateUrl: partial_base + "gallery.in_the_news.html"
         }).
         state("home", {
@@ -132,6 +136,7 @@ app.directive('navAutoClose', function () {
   });
 
 app.controller("grandOpeningController", function($scope) {
+   $scope.$parent.galleryName="Grand Opening";
    $scope.links = [
     { src:"/images/galleries/grand_opening/ArmBar.jpg", alt:"", caption:""},
     { src:"/images/galleries/grand_opening/BoxJumpForward.jpg", alt:"", caption:""},
@@ -156,6 +161,7 @@ app.controller("grandOpeningController", function($scope) {
 });
 
 app.controller("womenSelfDefenseController", function($scope) {
+   $scope.$parent.galleryName="Women's Self Defense";
    $scope.links = [
     { src:"/images/galleries/women_self_defense/BearHugFromBehind2.jpg", alt:"", caption:""},
     { src:"/images/galleries/women_self_defense/BearHugFromBehind.jpg", alt:"", caption:""},
@@ -186,4 +192,7 @@ app.controller("womenSelfDefenseController", function($scope) {
     { src:"/images/galleries/women_self_defense/Pull.jpg", alt:"", caption:""},
     { src:"/images/galleries/women_self_defense/Punching.jpg", alt:"", caption:""}
   ];
+});
+app.controller("inTheNewsController", function($scope) {
+   $scope.$parent.galleryName="In the News";
 });
