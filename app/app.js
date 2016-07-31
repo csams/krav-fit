@@ -1,4 +1,4 @@
-var app = angular.module("kravFit", ["ui.router"])
+var app = angular.module("kravFit", ["ui.router", "ui.bootstrap"])
   .config(function($stateProvider, $urlRouterProvider){
       var partial_base = "/partials/";
 
@@ -53,17 +53,9 @@ var app = angular.module("kravFit", ["ui.router"])
           url: "/faq",
           templateUrl: partial_base + "faq.html"
         }).
-        state("gear", {
-          url: "/gear",
-          templateUrl: partial_base + "gear.html"
-        }).
         state("about", {
           url: "/about",
           templateUrl: partial_base + "about.html"
-        }).
-        state("login", {
-          url: "/login",
-          templateUrl: partial_base + "login.html"
         });
     }
   );
@@ -96,22 +88,6 @@ app.controller("mainController", function($scope) {
   ];
 });
 
-app.directive("carousel", function($timeout) {
-   return {
-      restrict: "E",
-      scope: {
-        links: "=" 
-      },
-      templateUrl: "/partials/carousel.html",
-      link: function(scope, element) {
-        $timeout(function() {
-          $(".carousel-indicators li",element).first().addClass("active");
-          $(".carousel-inner .item",element).first().addClass("active");
-        });
-      }
-   }
-});
-
 app.directive('navAutoClose', function () {
     return function (scope, elm, attrs) {
       var collapsible = $(elm).find(".navbar-collapse");
@@ -137,6 +113,8 @@ app.directive('navAutoClose', function () {
 
 app.controller("grandOpeningController", function($scope) {
    $scope.$parent.galleryName="Grand Opening";
+   $scope.active = 0;
+   $scope.interval = 5000;
    $scope.links = [
     { src:"/images/galleries/grand_opening/ArmBar.jpg", alt:"", caption:""},
     { src:"/images/galleries/grand_opening/BoxJumpForward.jpg", alt:"", caption:""},
@@ -162,6 +140,8 @@ app.controller("grandOpeningController", function($scope) {
 
 app.controller("womenSelfDefenseController", function($scope) {
    $scope.$parent.galleryName="Women's Self Defense";
+   $scope.active = 0;
+   $scope.interval = 5000;
    $scope.links = [
     { src:"/images/galleries/women_self_defense/BearHugFromBehind2.jpg", alt:"", caption:""},
     { src:"/images/galleries/women_self_defense/BearHugFromBehind.jpg", alt:"", caption:""},

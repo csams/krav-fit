@@ -1,5 +1,7 @@
 <div>
-  <div>
-    <carousel links="links"></carousel>
+  <div uib-carousel active="active" interval="interval">
+    <div uib-slide ng-repeat="link in links" index="$index">
+      <img ng-src="{{link.src}}" style="margin:auto;">
+    </div>
   </div>
 </div>
